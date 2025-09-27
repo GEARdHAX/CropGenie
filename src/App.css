@@ -1,0 +1,203 @@
+/* ==========================================================================
+   1. CSS Variables (Theme)
+   ========================================================================== */
+
+:root {
+  --color-primary: #2e7d32;
+  --color-primary-dark: #1b5e20;
+  --color-primary-light: #e8f5e9;
+  --color-accent: #4caf50;
+  --color-accent-dark: #388e3c;
+  --color-text-dark: #212121;
+  --color-text-light: #5f6368;
+  --color-background: #f8f9fa;
+  --color-surface: #ffffff;
+  --color-border: #e0e0e0;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --border-radius: 12px;
+}
+
+/* ==========================================================================
+   2. Global Styles & Typography
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+  background-color: var(--color-background);
+  color: var(--color-text-dark);
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  color: var(--color-primary-dark);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   3. Main Layout
+   ========================================================================== */
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-header {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 1rem 2rem;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.page-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   4. Navigation
+   ========================================================================== */
+
+.app-nav {
+  display: flex;
+  justify-content: center;
+  background-color: var(--color-surface);
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.app-nav button {
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.8rem 1.5rem;
+  margin: 0 0.5rem;
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  transition: background-color 0.2s, color 0.2s;
+  white-space: nowrap; /* Prevent button text from wrapping */
+}
+
+.app-nav button.active {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary-dark);
+}
+
+.app-nav button:hover:not(.active) {
+  background-color: #f1f1f1;
+}
+
+.app-nav button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   5. Components (Cards, Forms, Buttons)
+   ========================================================================== */
+
+.card {
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 1.5rem;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--color-text-light);
+}
+
+.form-group input, .form-group select {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--color-border);
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus, .form-group select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px var(--color-primary-light);
+}
+
+.btn {
+  background-color: var(--color-accent);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn:hover {
+  background-color: var(--color-accent-dark);
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+/* ==========================================================================
+   6. Responsive Design
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .page-container {
+    padding: 1rem;
+  }
+
+  .app-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  /* Make the nav scrollable on mobile instead of wrapping */
+  .app-nav {
+    justify-content: flex-start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  }
+  
+  /* Hide scrollbar for a cleaner look but keep functionality */
+  .app-nav::-webkit-scrollbar {
+    display: none;
+  }
+  .app-nav {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+}
