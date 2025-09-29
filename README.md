@@ -12,66 +12,61 @@ By combining IoT sensors, Machine Learning, and Augmented Reality, it enables:
 
 🌍 The Problem We Solve
 
-Modern farming struggles with:
+🌊 Inefficient water & nutrient use → Higher costs, lower sustainability
 
-🌊 Inefficient Resource Use → Water & nutrients wasted, higher costs.
+🐛 Late pest/disease detection → Major yield loss
 
-🐛 Delayed Pest/Disease Detection → Major crop losses before action.
+📊 Complex raw data → Farmers lack simple actionable insights
 
-📊 Complex Data Overload → Farmers can’t easily act on raw sensor/weather data.
-
-💰 High Cost of Precision Tools → Existing solutions too expensive for small farms.
+💰 Expensive tools → Precision farming usually out of reach for small farms
 
 🌱 Our Solution
 
 CropGenie = Affordable + Scalable + Intuitive Farming Assistant
 
-🔹 Collects real-time data via low-cost IoT sensors
-🔹 Uses AI models (YOLOv8, XGBoost, PyTorch) for smart predictions
-🔹 Visualizes everything through a farmer-friendly AR app
+🔹 Real-time IoT-based data collection
+🔹 AI-powered predictions & crop diagnostics
+🔹 Farmer-friendly AR visualization
 
 ✨ Key Features
 
-🔍 AI Disease & Pest Detection → YOLOv8 trained on 3000+ images
+🔍 Disease & Pest Detection → realtime_server.py runs a YOLOv8 model via laptop or phone browser for instant leaf disease detection.
 
-🌡 Real-time Environmental Monitoring → Soil moisture, temp, humidity, plant height
+🌡 Environmental Monitoring → app.py (Flask backend) uses a Random Forest Classifier on real-time sensor data for crop health assessment & smart suggestions.
 
-📈 Growth Forecasting → GDD (Growing Degree Days) + ML models
+🔄 Real-time Communication → Powered by WebSockets, ensuring continuous sync between IoT hardware, backend, and AR app.
 
-🕶 AR-based Visualization → Overlay insights directly on live crops via phone camera
+🕶 AR Overlay → Mobile app overlays health data, risks, and growth predictions directly onto live crops.
 
 🏗 System Architecture
-
-CropGenie consists of 3 main components:
-
-🖥 1. Edge Node (Hardware)
+🖥 Edge Node (Hardware)
 
 Controller → Arduino
 
-Sensors → BME280, Ultrasonic, Soil Moisture
+Sensors → BME280, Soil Moisture, Ultrasonic
 
-Connectivity → ESP8266 WiFi, HTTP POST
+Connectivity → ESP8266 WiFi + HTTP POST
 
-⚙️ 2. Core Brain (Backend)
+⚙️ Core Brain (Backend)
 
-API → Flask
+realtime_server.py → YOLOv8 detection server for crop disease (browser-based)
 
-ML Models → YOLOv8 (disease detection), XGBoost (environment), PyTorch (growth)
+app.py → Flask backend + Random Forest Classifier for environmental analysis & farming suggestions
 
-Data Processing → Real-time insights + forecasts
+WebSockets → Real-time communication between IoT, backend, and app
 
-📱 3. User Interface (Mobile App)
+📱 User Interface (Mobile App)
 
-AR Built with Unity + ARCore/Vuforia
+Unity + ARCore + Vuforia
 
-Dashboard for metrics & alerts
+Dashboard with crop metrics, alerts, and insights
 
-Farmers can upload images for instant AI analysis
+Farmers can capture images → YOLOv8 returns disease diagnosis in real-time
 
 🛠 Tech Stack
 Category	Technologies
-🤖 ML/AI	YOLOv8, PyTorch, XGBoost, TensorFlow, Keras
-⚙️ Backend	Python, Flask, Node.js, Express.js
+🤖 ML/AI	YOLOv8, RandomForestClassifier, PyTorch, XGBoost, TensorFlow, Keras
+⚙️ Backend	Python, Flask, WebSockets, Node.js, Express.js
 📱 Frontend & AR	Unity, ARCore, Vuforia, Tailwind CSS
 💾 Databases	MongoDB, MySQL
 🔌 Hardware	Arduino, ESP8266, C++
@@ -89,43 +84,50 @@ Node.js
 
 ⚡ Installation
 
-Clone the repository:
+Clone repo
 
 git clone https://github.com/GEARdHAX/CropGenie.git
 
 
-Setup Backend:
+Start Flask Backend (app.py)
 
 cd CropGenie/backend
 pip install -r requirements.txt
-flask run
+python app.py
 
 
-Setup Hardware:
+Start Disease Detection Server (realtime_server.py)
 
-Open /hardware .ino file in Arduino IDE
+python realtime_server.py
 
-Install libraries: ESP8266WiFi, BME280, etc.
 
-Flash code to Arduino/ESP8266
+👉 Visit the local server in your browser to upload/capture crop images.
 
-Build the Mobile App:
+Setup Hardware
+
+Open /hardware .ino in Arduino IDE
+
+Install ESP8266WiFi, BME280, etc.
+
+Flash to Arduino/ESP8266
+
+Build Mobile AR App
 
 Open /mobile-app in Unity
 
-Update API endpoint (Flask server)
+Update Flask/WebSocket endpoints
 
-Build APK & deploy to Android
+Build APK for Android
 
 🌟 Why CropGenie?
 
-✅ Farmer-first design — Simple AR visualizations instead of confusing dashboards
+📡 Real-time, WebSocket-driven communication
 
-✅ Affordable — Uses minimal, low-cost sensors
+🧑‍🌾 Farmer-first design → AR insights instead of raw data
 
-✅ Scalable — Works for small farms and can scale up
+💰 Affordable IoT sensors & open-source stack
 
-✅ Hackathon-proven — Designed for impact, speed, and usability
+🔮 Predictive + Diagnostic AI models
 
 📜 License
 
