@@ -28,7 +28,7 @@ function DiseaseDetectionPage() {
     
     // --- 2. CONNECT TO WEBSOCKET SERVER ---
     // TODO: Replace with your actual server IP address
-    const serverUrl = "http://172.25.25.112:8080"; 
+    const serverUrl = "http://10.44.189.237:8080"; 
     socketRef.current = io(serverUrl);
 
     socketRef.current.on('connect', () => {
