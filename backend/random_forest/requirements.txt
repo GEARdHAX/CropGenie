@@ -1,0 +1,6 @@
+Flask
+flask-sock
+gunicorn
+pandas
+scikit-learn
+joblib

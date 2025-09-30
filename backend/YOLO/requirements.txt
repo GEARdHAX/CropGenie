@@ -1,0 +1,7 @@
+Flask
+flask-socketio
+gunicorn
+ultralytics
+Pillow
+python-engineio==4.8.0
+python-socketio==5.10.0
